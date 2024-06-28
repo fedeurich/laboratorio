@@ -13,13 +13,15 @@ namespace _02_Aplicacion.DTOs
         private Nombre nombre;
         private Apellido apellido;
         private FechaNacimiento fechaNacimiento;
+        private Estado estado;
 
-        public PacienteDTO(Guid id, string nombre, string apellido, DateTime fechaNacimiento)
+        public PacienteDTO(Guid id, string nombre, string apellido, DateTime fechaNacimiento, string Estado)
         {
             this.id = new Identificador(id);
             this.nombre = new Nombre(nombre);
             this.apellido =new  Apellido(apellido);
             this.fechaNacimiento = new FechaNacimiento(fechaNacimiento);
+            this.estado = new Estado(estado);
 
         }
         public Guid Id()
@@ -38,6 +40,14 @@ namespace _02_Aplicacion.DTOs
         public DateTime FechaNacimiento()
         {
             return this.fechaNacimiento.GetValor();
+        }
+        public Estado GetEstado()
+        {
+            return this.estado;
+        }
+        public void ActualizarEstado(Estado nuevoEstado)
+        {
+            this.estado = nuevoEstado;
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿using _03_Dominio.ValueObject;
 using System;
-//using _03_Dominio.ValueObject;
+
 
 namespace _03_Dominio.Entidades
 {
@@ -11,11 +11,12 @@ namespace _03_Dominio.Entidades
         private Nombre nombre;
         private Apellido apellido;
         private FechaIngreso fechaIngreso;
+        private Estado estado; // Nuevo campo para marcar si el doctor está eliminado
 
 
 
 
-        public Doctor(Guid id, string nombre, string apellido, DateTime fechaIngreso)
+        public Doctor(Guid id, string nombre, string apellido, DateTime fechaIngreso, string estado)
         {
 
 
@@ -25,6 +26,7 @@ namespace _03_Dominio.Entidades
             this.nombre = new Nombre(nombre);
             this.apellido = new Apellido(apellido);
             this.fechaIngreso = new FechaIngreso(fechaIngreso);
+            this.estado = new Estado(estado);
 
         }
 
@@ -50,6 +52,10 @@ namespace _03_Dominio.Entidades
         {
             return this.fechaIngreso.GetValor();
         }
+        public Estado GetEstado()
+        {
+            return this.estado;
+        }
 
         //Metodos para actualizar valores
 
@@ -68,6 +74,22 @@ namespace _03_Dominio.Entidades
             this.fechaIngreso=new FechaIngreso(fecha);
         }
 
+        //Ejemplo
+        public void ActualizarEstado(Estado nuevoEstado)
+        {
+            // Aquí podrías agregar validaciones si necesitas asegurar que el estado sea válido
+            this.estado = nuevoEstado;
+        }
 
+        // Métodos adicionales para actualizar valores, etc.
+
+        // Método para marcar el doctor como inactivo
+        public void Borrar()
+        {
+            this.estado = new Estado("inactivo");
+        }
     }
+
+
+}
 }

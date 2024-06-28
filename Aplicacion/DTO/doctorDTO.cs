@@ -13,11 +13,12 @@ namespace _02_Aplicacion.DTOs
       private Nombre nombre;
       private  Apellido apellido;
       private  FechaIngreso fechaIngreso;
-            
+        private Estado estado;
 
 
 
-        public DoctorDTO(Guid id, string nombre, string apellido, DateTime fechaIngreso)
+
+        public DoctorDTO(Guid id, string nombre, string apellido, DateTime fechaIngreso, string estado)
         {
 
 
@@ -27,6 +28,7 @@ namespace _02_Aplicacion.DTOs
             this.nombre = new Nombre(nombre);
             this.apellido = new Apellido(apellido);
             this.fechaIngreso = new FechaIngreso(fechaIngreso);
+            this.estado = new Estado(estado);
 
         }
 
@@ -51,6 +53,15 @@ namespace _02_Aplicacion.DTOs
         public DateTime FechaIngreso()
         {
             return this.fechaIngreso.GetValor();
+
+        }
+        public Estado GetEstado()
+        {
+            return this.estado;
+        }
+        public void ActualizarEstado(Estado nuevoEstado)
+        {
+            this.estado = nuevoEstado;
         }
 
 

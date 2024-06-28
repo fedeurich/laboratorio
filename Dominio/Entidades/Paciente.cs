@@ -8,13 +8,15 @@ namespace _03_Dominio.Entidades
        private Nombre nombre;
        private Apellido apellido;
        private FechaNacimiento fechaNacimiento;
+       private Estado estado; // Nuevo campo para marcar si el doctor está eliminado
 
-        public Paciente(Guid id, string nombre, string apellido, DateTime fechaNacimiento)
+        public Paciente(Guid id, string nombre, string apellido, DateTime fechaNacimiento, string estado)
         {
             this.id = new Identificador(id);
             this.nombre = new Nombre(nombre);
             this.apellido = new Apellido(apellido);
             this.fechaNacimiento = new FechaNacimiento(fechaNacimiento);
+            this.estado = new Estado(estado);
 
         }
         public Guid IdP()
@@ -34,8 +36,27 @@ namespace _03_Dominio.Entidades
         {
             return this.fechaNacimiento.GetValor();
         }
+        public Estado GetEstado()
+        {
+            return this.estado;
+        }
+        //Ejemplo
+        public void ActualizarEstado(Estado nuevoEstado)
+        {
+            // Aquí podrías agregar validaciones si necesitas asegurar que el estado sea válido
+            this.estado = nuevoEstado;
+        }
+
+        // Métodos adicionales para actualizar valores, etc.
+
+        // Método para marcar el doctor como inactivo
+        public void Borrar()
+        {
+            this.estado = new Estado("inactivo");
+        }
 
     }
+
 }
 
 }
